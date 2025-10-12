@@ -1,34 +1,17 @@
-
-function blow_candle() {
-	const timerButton = document.getElementById('blow_candle');
-
-	let countdownValue = 3; // Initial countdown value in seconds
-	let timerInterval;
-
-	timerInterval = setInterval(function () {
-		countdownValue--;
-		console.log("countdownValue", countdownValue);
-
-		if (countdownValue <= 0) {
-			clearInterval(timerInterval); // Stop the timer
-			timerButton.innerText = 'Timer Complete';
-			// You can re-enable the button or perform other actions here
-			timerButton.disabled = false;
-
-			startConfetti();
-		} else {
-			timerButton.innerText = countdownValue;
-		}
-	}, 1000); // Update every 1 second (1000 milliseconds)
-}
-
 function next() {
-	document.getElementById("first-container").style.display = "none";
-	document.getElementById("second-part").style = 'display: block';
+	document.getElementById("first-container").style.display = "block";
+	document.getElementById("second-part").style.display = 'none';
+
+	const audio = document.getElementById('bg-music');
+
+	if (audio.paused) {
+		audio.play();
+	} else {
+		audio.pause();
+	}
+
+	startConfetti();
 }
-setTimeout(() => {
-	document.getElementById('bg-music').play();
-}, 2000);
 
 var maxParticleCount = 150; //set max confetti count
 var particleSpeed = 2; //set the particle animation speed
