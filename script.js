@@ -1,8 +1,11 @@
 function next() {
 	document.getElementById("first-container").style.display = "block";
 	document.getElementById("second-part").style.display = 'none';
-
 	const audio = document.getElementById('bg-music');
+
+	setTimeout(() => {
+		document.getElementById("cut_cake").style.display = "block";
+	}, 4000);
 
 	if (audio.paused) {
 		audio.play();
@@ -10,6 +13,10 @@ function next() {
 		audio.pause();
 	}
 
+}
+
+function cut_cake () {
+	document.getElementById("first-candle").classList.add('hidden');
 	startConfetti();
 }
 
