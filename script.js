@@ -26,6 +26,9 @@ function next() {
 	document.getElementById("first-container").style.display = "none";
 	document.getElementById("second-part").style = 'display: block';
 }
+setTimeout(() => {
+	document.getElementById('bg-music').play();
+}, 2000);
 
 var maxParticleCount = 150; //set max confetti count
 var particleSpeed = 2; //set the particle animation speed
