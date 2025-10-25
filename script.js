@@ -7,8 +7,54 @@ var toggleConfetti; //call to start or stop the confetti animation depending on 
 var removeConfetti; //call to stop the confetti animation and remove all confetti immediately
 
 
+function getTimeRemaining(endtime) {
+	var t = Date.parse(endtime) - Date.parse(new Date());
+	var seconds = Math.floor((t / 1000) % 60);
+	var minutes = Math.floor((t / 1000 / 60) % 60);
+	var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+	var days = Math.floor(t / (1000 * 60 * 60 * 24));
+	return {
+		'total': t,
+		'days': days,
+		'hours': hours,
+		'minutes': minutes,
+		'seconds': seconds
+	};
+}
+
+
+function initializeClock(id, endtime) {
+	var clock = document.getElementById(id);
+	var daysSpan = clock.querySelector('.days');
+	var hoursSpan = clock.querySelector('.hours');
+	var minutesSpan = clock.querySelector('.minutes');
+	var secondsSpan = clock.querySelector('.seconds');
+
+	function updateClock() {
+		var t = getTimeRemaining(endtime);
+
+		daysSpan.innerHTML = ('0' + t.days).slice(-2);
+		hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+		minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+		secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+		if (t.total <= 0) {
+			clearInterval(timeinterval);
+			document.getElementsByClassName('first_section')[0].style.display = 'none';
+			document.getElementsByClassName('second_section')[0].style.display = 'block';
+			frame();
+		}
+	}
+
+	updateClock();
+	var timeinterval = setInterval(updateClock, 1000);
+}
+var deadline = new Date('October 27, 2025 00:00:00');
+initializeClock('clockdiv', deadline);
+
 function frame() {
-	Object.assign(document.body.style, {
+	let element = document.getElementsByClassName("second_section")[0];
+	Object.assign(element.style, {
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "space-evenly",
@@ -16,7 +62,7 @@ function frame() {
 	});
 }
 
-window.onload = frame();
+// window.onload = frame();
 
 document.getElementsByTagName('button')[0].addEventListener("click", next_page);
 
