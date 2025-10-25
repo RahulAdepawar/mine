@@ -1,24 +1,3 @@
-function next() {
-	document.getElementById("first-container").style.display = "block";
-	document.getElementById("second-part").style.display = 'none';
-	const audio = document.getElementById('bg-music');
-
-	setTimeout(() => {
-		document.getElementById("cut_cake").style.display = "block";
-	}, 4000);
-
-	if (audio.paused) {
-		audio.play();
-	} else {
-		audio.pause();
-	}
-
-}
-
-function cut_cake () {
-	document.getElementById("first-candle").classList.add('hidden');
-	startConfetti();
-}
 
 var maxParticleCount = 150; //set max confetti count
 var particleSpeed = 2; //set the particle animation speed
@@ -26,6 +5,58 @@ var startConfetti; //call to start confetti animation
 var stopConfetti; //call to stop adding confetti
 var toggleConfetti; //call to start or stop the confetti animation depending on whether it's already running
 var removeConfetti; //call to stop the confetti animation and remove all confetti immediately
+
+
+function frame() {
+	Object.assign(document.body.style, {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "space-evenly",
+		height: "100vh",
+	});
+}
+
+window.onload = frame();
+
+document.getElementsByTagName('button')[0].addEventListener("click", next_page);
+
+function next_page() {
+	var colors = ["#2044e7ff", "#f21010ff"];
+	var duration = 60 * 1000; // 15 minutes in milliseconds
+	var endTime = Date.now() + duration;
+
+	confetti({
+		particleCount: 70,
+		angle: 60,
+		spread: 60,
+		origin: { x: 0 },
+		colors: colors,
+	});
+	confetti({
+		particleCount: 70,
+		angle: 140,
+		spread: 60,
+		origin: { x: 1 },
+		colors: colors,
+	});
+
+	if (Date.now() < endTime) {
+		requestAnimationFrame(frame);
+	}
+
+	document.body.removeAttribute("style");
+	document.getElementsByTagName('button')[0].style.display = 'none';
+	document.getElementsByClassName('birthdaycard')[0].style.display = 'none';
+	document.getElementsByClassName('first-container')[0].style.display = 'block';
+
+	const audio = document.getElementById('bg-music');
+
+	if (audio.paused) {
+		audio.play();
+	} else {
+		audio.pause();
+	}
+}
 
 (function () {
 	startConfetti = startConfettiInner;
@@ -150,3 +181,40 @@ var removeConfetti; //call to stop the confetti animation and remove all confett
 		}
 	}
 })();
+
+// PArty Popper js
+const popString = document.getElementById("popper-string");
+const popPaper = document.getElementById("popper-paper");
+const popBody = document.getElementById("popper-body");
+const popContainer = document.getElementById("popper-container");
+
+// popString.addEventListener("click", StringRespondClick);
+
+function StringRespondClick() {
+	popBody.addEventListener("click", BodyRespondClick)
+	popBody.classList.add('active')
+	popString.removeEventListener("click", StringRespondClick)
+	popString.classList.add('active')
+	popPaper.classList.add('active')
+	confetti({
+		colors: ['#35ABCD'],
+		angle: 45,
+		particleCount: 500,
+		spread: 150,
+		origin: {
+			y: .825,
+			x: .1,
+		}
+	});
+}
+
+function BodyRespondClick() {
+	popBody.removeEventListener("click", BodyRespondClick)
+	popString.addEventListener("click", StringRespondClick)
+	popString.classList.remove('active')
+	popString.classList.add('active2')
+	popPaper.classList.remove('active')
+	popBody.classList.remove('active')
+	popBody.classList.add('active2')
+	popPaper.classList.add('active2')
+} 
