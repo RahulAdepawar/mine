@@ -5,7 +5,7 @@ var startConfetti; //call to start confetti animation
 var stopConfetti; //call to stop adding confetti
 var toggleConfetti; //call to start or stop the confetti animation depending on whether it's already running
 var removeConfetti; //call to stop the confetti animation and remove all confetti immediately
-
+var check_card_open = false;
 
 function getTimeRemaining(endtime) {
 	var t = Date.parse(endtime) - Date.parse(new Date());
@@ -48,7 +48,7 @@ function initializeClock(id, endtime) {
 
       const confirm = await ui.confirm('Kitna Pyaar Karte Ho 😒?');
       if (confirm) {
-        alert('Nahi Bolte to dikhata hi nahi 😒');
+        alert('Nahi Bolte to dikhata hi nahi 😒...');
 
 	    document.getElementsByClassName('second_section')[0].style.display = 'none';
 		frame();
@@ -79,7 +79,17 @@ function frame() {
 
 document.getElementsByTagName('button')[0].addEventListener("click", next_page);
 
+document.getElementsByClassName('birthdaycard')[0].addEventListener('click', () => {
+	check_card_open = true;
+});
+
 function next_page() {
+
+	if (!check_card_open) {
+		alert("Pehle Card dekho. Uspe Tap/Click Karoge to open hoga.");
+		return;
+	}
+
 	var colors = ["#2044e7ff", "#f21010ff"];
 	var duration = 60 * 1000; // 15 minutes in milliseconds
 	var endTime = Date.now() + duration;
