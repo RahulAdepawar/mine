@@ -29,6 +29,18 @@
 			</div>
 		</div>
 	</div>
+	<div id="clear_all_confirm" style="display: none;">
+		<div class="confirm">
+			<div></div>
+			<div>
+				<div id="confirmMessage">Confirm text</div>
+				<div>
+					<input id="confirmYes" type="button" value="Yes" />
+					<input id="confirmNo" type="button" value="No" />
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="second_section" style="display: none;">
 		<div class="birthdaycard">
 			<div class="cardfront">
@@ -43,14 +55,22 @@
 			<div class="cardinside">
 				<h3 class="back"><b>HAPPY BIRTHDAY!</b></h3>
 				<p style="font-size: 20px;"><b>My Dear Baby,</b></p>
-				<p style="font-size: 14px;">Happy birthday to the person who makes my life more meaningful just by being in it. <br><br> Thank you so much mere jivan me ane ke liye. Ap bohot khayal rakhte ho aur hamesha samjhate aaye sahi galat. Bohot kuch karte ho app mere liye bure wakt me sath dete ho sambhalte ho bs yehi chaiye tha mere jivan me. Sachme bohot khushnaseeb samjhta hu ki aap mere jivan ka ek hissa ho. Aap meri jaan ho , Meri dilruba ho, Meri Dhadkan ho. Thanku so much for loving me ❤️. <br> Baaki Hamesha Tabiyat kaa
-					khayal rakho waise me hu me bhi rakhunga hi but fir bhi...,<br> Aur khudpe dhayn diya karo sabko sambhalte sambhalte khudpe laparwahi mt karo, <br> Khane me kanjusi naa karo...! <br><br> Stresss liya hi
-					mat karo. <br><br> Hamesha Khush Raho. <br><br> Hamesha Sath Raho... <br><br>I Loveeee Youuuuuuuuuuu Forever ❤️. <br> #Mine❤️</p>
+				<p style="font-size: 14px;">Happy birthday to the person who makes my life more meaningful just by being
+					in it. <br><br> Thank you so much mere jivan me ane ke liye. Ap bohot khayal rakhte ho aur hamesha
+					samjhate aaye sahi galat. Bohot kuch karte ho app mere liye bure wakt me sath dete ho sambhalte ho
+					bs yehi chaiye tha mere jivan me. Sachme bohot khushnaseeb samjhta hu ki aap mere jivan ka ek hissa
+					ho. Aap meri jaan ho , Meri dilruba ho, Meri Dhadkan ho. Thanku so much for loving me ❤️. <br> Baaki
+					Hamesha Tabiyat kaa
+					khayal rakho waise me hu me bhi rakhunga hi but fir bhi...,<br> Aur khudpe dhayn diya karo sabko
+					sambhalte sambhalte khudpe laparwahi mt karo, <br> Khane me kanjusi naa karo...! <br><br> Stresss
+					liya hi
+					mat karo. <br><br> Hamesha Khush Raho. <br><br> Hamesha Sath Raho... <br><br>I Loveeee Youuuuuuuuuuu
+					Forever ❤️. <br> #Mine❤️</p>
 				<!-- <p class="name">xxx</p> -->
 			</div><!-- end cardinside -->
 		</div><!-- end birthdaycard -->
 		<div class="break"></div>
-		<button>Next</button>
+		<button>Click Here</button>
 		<div class="first-container" id="first-container" style="display: none;">
 			<h3>Happy Birthday My Love ❤️</h3>
 			<div class="velas">
@@ -80,8 +100,9 @@
 				<path fill="#8b6a60" d="M100-178.521c1.858,0,3.364,1.506,3.364,3.363c0,0,0,33.17,0,44.227
 			c0,19.144,0,57.431,0,76.574c0,10.152,0,40.607,0,40.607c0,1.858-1.506,3.364-3.364,3.364l0,0c-1.858,0-3.364-1.506-3.364-3.364c0,0,0-30.455,0-40.607c0-19.144,0-57.432,0-76.575c0-11.057,0-44.226,0-44.226C96.636-177.015,98.142-178.521,100-178.521
 			L100-178.521z">
-					<animate id="relleno_2" attributeName="d" calcMode="spline" keySplines="0 0 1 1; 0 0 1 1; 0 0 0.58 1"
-						begin="bizcocho_2.end" dur="0.5s" fill="freeze" values="
+					<animate id="relleno_2" attributeName="d" calcMode="spline"
+						keySplines="0 0 1 1; 0 0 1 1; 0 0 0.58 1" begin="bizcocho_2.end" dur="0.5s" fill="freeze"
+						values="
 							  M100-178.521c1.858,0,3.364,1.506,3.364,3.363c0,0,0,33.17,0,44.227
 			c0,19.144,0,57.431,0,76.574c0,10.152,0,40.607,0,40.607c0,1.858-1.506,3.364-3.364,3.364l0,0c-1.858,0-3.364-1.506-3.364-3.364c0,0,0-30.455,0-40.607c0-19.144,0-57.432,0-76.575c0-11.057,0-44.226,0-44.226C96.636-177.015,98.142-178.521,100-178.521
 			L100-178.521z
@@ -104,7 +125,8 @@
 				<path fill="#a88679" d="M173.667-15.929c-46.512,0-105.486,0-147.334,0c-3.999,0-4-16.002,0-16.002
 			c43.566,0,97.96,0,147.334,0C177.667-31.931,177.666-15.929,173.667-15.929z">
 					<animate id="bizcocho_2" attributeName="d" calcMode="spline"
-						keySplines="0 0 1 1; 0 0 1 1; 0.25 0 0.58 1" begin="relleno_1.end" dur="0.5s" fill="freeze" values="
+						keySplines="0 0 1 1; 0 0 1 1; 0.25 0 0.58 1" begin="relleno_1.end" dur="0.5s" fill="freeze"
+						values="
 							  M173.667-15.929c-46.512,0-105.486,0-147.334,0c-3.999,0-4-16.002,0-16.002
 			c43.566,0,97.96,0,147.334,0C177.667-31.931,177.666-15.929,173.667-15.929z
 							  ;

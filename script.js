@@ -22,33 +22,46 @@ function getTimeRemaining(endtime) {
 	};
 }
 
-
 function initializeClock(id, endtime) {
-	var clock = document.getElementById(id);
-	var daysSpan = clock.querySelector('.days');
-	var hoursSpan = clock.querySelector('.hours');
-	var minutesSpan = clock.querySelector('.minutes');
-	var secondsSpan = clock.querySelector('.seconds');
+  var clock = document.getElementById(id);
+  var daysSpan = clock.querySelector('.days');
+  var hoursSpan = clock.querySelector('.hours');
+  var minutesSpan = clock.querySelector('.minutes');
+  var secondsSpan = clock.querySelector('.seconds');
 
-	function updateClock() {
-		var t = getTimeRemaining(endtime);
+  async function updateClock() { // 👈 Make this async
+    var t = getTimeRemaining(endtime);
 
-		daysSpan.innerHTML = ('0' + t.days).slice(-2);
-		hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-		minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-		secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+    daysSpan.innerHTML = ('0' + t.days).slice(-2);
+    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
 
-		if (t.total <= 0) {
-			clearInterval(timeinterval);
-			document.getElementsByClassName('first_section')[0].style.display = 'none';
-			document.getElementsByClassName('second_section')[0].style.display = 'block';
-			frame();
-		}
-	}
+    if (t.total <= 0) {
+      clearInterval(timeinterval);
+      document.getElementsByClassName('first_section')[0].style.display = 'none';
+      document.getElementById("clear_all_confirm").style.display = 'block';
 
-	updateClock();
-	var timeinterval = setInterval(updateClock, 1000);
+      const ui = {
+        confirm: async (message) => createConfirm(message)
+      };
+
+      const confirm = await ui.confirm('Kitna Pyaar Karte Ho 😒?');
+      if (confirm) {
+        alert('Nahi Bolte to dikhata hi nahi 😒');
+
+	    document.getElementsByClassName('second_section')[0].style.display = 'none';
+		frame();
+      } else {
+        alert('Ab yeh fatake fut rahe yeh dekh ke sojao 😠😤😤');
+      }
+    }
+  }
+
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
 }
+
 var deadline = new Date('October 27, 2025 00:00:00');
 initializeClock('clockdiv', deadline);
 
@@ -263,4 +276,44 @@ function BodyRespondClick() {
 	popBody.classList.remove('active')
 	popBody.classList.add('active2')
 	popPaper.classList.add('active2')
-} 
+}
+
+const createConfirm = (message) => {
+	return new Promise((resolve, reject) => {
+		const confirmBox = document.querySelector('.confirm');
+		const confirmMessage = document.getElementById('confirmMessage');
+		const btnYes = document.getElementById('confirmYes');
+		const btnNo = document.getElementById('confirmNo');
+
+		// Set message
+		confirmMessage.textContent = message;
+
+		// Remove any previous event listeners
+		btnYes.replaceWith(btnYes.cloneNode(true));
+		btnNo.replaceWith(btnNo.cloneNode(true));
+
+		// Re-select after cloning
+		const newYes = document.getElementById('confirmYes');
+		const newNo = document.getElementById('confirmNo');
+		newYes.value = "Bohot";
+		newNo.value = "Bilkul Nahi";
+
+		// Show the confirm box
+		confirmBox.style.display = 'block';
+
+		// Handle buttons
+		newYes.addEventListener('click', () => {
+			confirmBox.style.display = 'none';
+			resolve(true);
+		});
+
+		newNo.addEventListener('click', () => {
+			confirmBox.style.display = 'none';
+			resolve(false);
+		});
+	});
+};
+
+// const save = async () => {
+	
+// };
